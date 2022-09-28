@@ -2,20 +2,14 @@
  * @param {number[]} nums
  * @return {number}
  */
-var maxSubArray = function(nums) {
-    const n = nums.length
+
+function maxSubArray(nums) {
+    let maxSum = Number.MIN_SAFE_INTEGER
+    let sum = 0
     
-    for (let i = 1; i < n; i++) {
-        nums[i] = Math.max(nums[i], nums[i] + nums[i - 1])
+    for (let i = 0; i < nums.length; i++) {
+        sum = Math.max(sum + nums[i], nums[i])
+        maxSum = Math.max(sum, maxSum)
     }
-    return Math.max(...nums)
-};
-
-// nums = [integers]
-// if max is neg int
-// FOR num in nums
-// reduce function 
-// if > curr
-// if > max
-
-// 
+    return maxSum
+}
