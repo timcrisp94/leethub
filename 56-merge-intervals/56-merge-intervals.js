@@ -16,8 +16,6 @@ var merge = function(intervals) {
         } else {
             result.push(intervals[i])
         }
-    }
-    
-    return result
-    
+    }    
+    return result    
 };
