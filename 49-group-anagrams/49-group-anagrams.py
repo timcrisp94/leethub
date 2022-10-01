@@ -6,10 +6,9 @@ class Solution(object):
         """
         result = defaultdict(list)
 
-        for s in strs:
-            count = [0] * 26
-            for c in s:
-                count[ord(c) - ord("a")] += 1
-            result[tuple(count)].append(s)
+        for str in strs:
+            s = ''.join(sorted(str))
+            result[s].append(str)
+            
         return result.values()
         
