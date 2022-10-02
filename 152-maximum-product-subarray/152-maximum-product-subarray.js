@@ -3,20 +3,24 @@
  * @return {number}
  */
 const maxProduct = function(nums) {
-  let result = nums[0]
-  let currentMax = 1
-  let currentMin = 1
+  const n = nums.length
+  if (n === 1) return nums[0]
 
-  for (let num of nums) {
-    if (num > result) result = num
-    if (num === 0) {
-      currentMax = 1
-      currentMin = 1
+  let negative = 1
+  let prefix = 1
+  let max = 0
+
+  for (let i = 0; i < n; i++) {
+    prefix *= nums[i]
+    max = Math.max(prefix, max)
+
+    if (prefix < 0) {
+      max = Math.max(prefix/negative, max)
+      negative = negative == 1 ? prefix : negative
+    } else if (prefix == 0) {
+      prefix = 1
+      negative = 1
     }
-    let temp = currentMax * num
-    currentMax = Math.max(temp, num * currentMin, num)
-    currentMin = Math.min(temp, num * currentMin, num)
-    result = Math.max(result, currentMax) 
   }
-  return result
+  return max
 }
