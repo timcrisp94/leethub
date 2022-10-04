@@ -1,24 +1,15 @@
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var reverseList = function(head) {
-    let cur = head
-    let prev = null
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def reverseList(self, head):
+        return self.helper(head, None)
     
-    while(cur) {
-        let hold = cur.next
-        cur.next = prev
-        prev = cur
-        cur = hold
-    }
-    return prev
-    
-};
+    def helper(self, head, node):
+        if not head:
+            return node
+        tmp = head.next
+        head.next = node
+        return self.helper(tmp, head)
