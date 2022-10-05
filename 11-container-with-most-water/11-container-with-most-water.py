@@ -1,19 +1,18 @@
-/**
- * @param {number[]} height
- * @return {number}
- */
-var maxArea = function(height) {
-    const n = height.length
-    let left = 0
-    let right = n - 1
-    let maxA = 0
-    
-    while (left < right) {
-        let width = right - left
-        let minH = Math.min(height[left], height[right])
-        maxA = Math.max(minH * width, maxA)
-        if (height[left] > height[right]) right -= 1
-        else left += 1
-    }
-    return maxA
-};
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        l, r = 0, len(height) - 1
+        res = 0
+
+        while l < r:
+            res = max(res, min(height[l], height[r]) * (r - l))
+            if height[l] < height[r]:
+                l += 1
+            elif height[r] <= height[l]:
+                r -= 1
+        return res
+
+
