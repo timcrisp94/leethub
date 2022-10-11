@@ -5,16 +5,13 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        count = {}
-        res, l, maxf = 0, 0, 0
+        maxf = l = 0
+        count = collections.Counter()
         
         for r in range(len(s)):
-            count[s[r]] = 1 + count.get(s[r], 0)
+            count[s[r]] += 1
             maxf = max(maxf, count[s[r]])
-            
-            if (r - l + 1) - maxf > k:
+            if r - l + 1 > maxf + k:
                 count[s[l]] -= 1
                 l += 1
-            
-            res = max(res, r - l + 1)
-        return res
+        return len(s) - l
