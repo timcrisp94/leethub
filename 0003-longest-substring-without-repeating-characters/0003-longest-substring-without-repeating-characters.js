@@ -2,26 +2,21 @@
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
-  var sLen = s.length,
-    maxLen = 0,
-    maxStr = '',
-    tmpStr,
-    posIndex,
-    i;
+const lengthOfLongestSubstring = (s) => {
+  const n = s.length
+  let maxLen = 0
+  let maxStr = ''
 
-  for( i = 0 ; i < sLen; i++ ){
-
-    tmpStr = s[i];
-    posIndex = maxStr.indexOf(tmpStr);
-
-    if(posIndex > -1){
-      maxStr = maxStr.substring(posIndex + 1);
+  for (let i = 0; i < n; i++) {
+    let temp = s[i]
+    let posIndex = maxStr.indexOf(temp)
+    
+    if (posIndex > -1) {
+      maxStr = maxStr.substring(posIndex + 1)
     }
 
-    maxStr += tmpStr;
-    maxLen = Math.max(maxLen, maxStr.length);
+    maxStr += temp
+    maxLen = Math.max(maxLen, maxStr.length)
   }
-
-  return maxLen;
-};
+  return maxLen
+}
