@@ -6,10 +6,11 @@ const lengthOfLongestSubstring = (s) => {
   const n = s.length
   let maxLen = 0
   let maxStr = ''
+  let temp, posIndex, i
 
-  for (let i = 0; i < n; i++) {
-    let temp = s[i]
-    let posIndex = maxStr.indexOf(temp)
+  for (i = 0; i < n; i++) {
+    temp = s[i]
+    posIndex = maxStr.indexOf(temp)
     
     if (posIndex > -1) {
       maxStr = maxStr.substring(posIndex + 1)
