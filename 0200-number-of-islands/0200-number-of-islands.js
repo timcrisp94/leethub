@@ -7,7 +7,7 @@ var numIslands = function(grid) {
 	let count = 0;
 	
 	function callDFS(grid, i, j) {
-		if (i < 0 || i >= n || j < 0 || j >= grid[i].length || grid[i][j] == '0') {
+		if (i < 0 || i >= n || j < 0 || j >= grid[i].length || grid[i][j] === '0') {
 			return;
 		}
 		
