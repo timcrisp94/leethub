@@ -3,10 +3,11 @@
  * @return {number}
  */
 var numIslands = function(grid) {
+    const n = grid.length
 	let count = 0;
 	
 	function callDFS(grid, i, j) {
-		if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] == '0') {
+		if (i < 0 || i >= n || j < 0 || j >= grid[i].length || grid[i][j] == '0') {
 			return;
 		}
 		
@@ -18,7 +19,7 @@ var numIslands = function(grid) {
 		callDFS(grid, i, j - 1); // left
 	}
 
-	for (let i = 0; i < grid.length; i++) {
+	for (let i = 0; i < n; i++) {
 		for (let j = 0; j < grid[i].length; j++) {
 			if (grid[i][j] == '1') {
 				count += 1;
