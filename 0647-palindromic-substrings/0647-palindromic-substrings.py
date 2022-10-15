@@ -4,17 +4,21 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
+#         n = len(s)
+#         dp = [[0] * n for _ in range(n)]
+        
+#         res = 0
+#         for i in range(n-1,-1,-1):
+#             for j in range(i, n):
+#                 dp[i][j] = s[i] == s[j] and ((j-1+1) < 3 or dp[i+1][j-1])
+#                 res += dp[i][j]
+#         return res
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        
         res = 0
-
-        for i in range(len(s)):
-          res += self.countPali(s, i, i)
-          res += self.countPali(s, i, i + 1)
+        for i in range(n-1, -1, -1):
+            for j in range(i, n):
+                dp[i][j] = s[i] == s[j] and ((j-i+1) < 3 or dp[i+1][j-1])
+                res += dp[i][j]
         return res
-    
-    def countPali(self, s, l, r):
-        res = 0
-        while l >= 0 and r < len(s) and s[l] == s[r]:
-          res += 1
-          l-= 1
-          r += 1
-        return res   
