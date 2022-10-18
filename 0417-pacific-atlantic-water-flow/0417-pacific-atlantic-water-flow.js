@@ -3,17 +3,12 @@
  * @return {number[][]}
  */
 const pacificAtlantic = function(matrix) {
-  if (matrix.length === 0) return []
-
   const [m,n] = [matrix.length, matrix[0].length]
-  const pacificVisited = new Set()
-  const atlanticVisited = new Set()
-  const directions = [
-    [1,0],
-    [-1,0],
-    [0,1],
-    [0,-1]
-  ]
+  if (m === 0) return []
+
+  const pacVisited = new Set()
+  const atlVisited = new Set()
+  const directions = [[1,0],[-1,0],[0,1],[0,-1]]
 
   const intersection = (setA, setB) => {
     let result = new Set()
@@ -24,15 +19,13 @@ const pacificAtlantic = function(matrix) {
     }
     return result
   }
-
   const dfs = (i, j, visited) => {
     const pair = `${i}-${j}`
     if (visited.has(pair)) return
     visited.add(pair)
-
+    
     for (const direction of directions) {
       const [nextI, nextJ] = [i + direction[0], j + direction[1]]
-
       if (
         0 <= nextI &&
         nextI < m &&
@@ -44,16 +37,14 @@ const pacificAtlantic = function(matrix) {
       }
     }
   }
-
   for (let row = 0; row < m; row++) {
-    dfs(row, 0, pacificVisited)
-    dfs(row, n - 1, atlanticVisited)
+    dfs(row, 0, pacVisited)
+    dfs(row, n-1, atlVisited)
   }
-
   for (let col = 0; col < n; col++) {
-    dfs(0, col, pacificVisited)
-    dfs(m - 1, col, atlanticVisited)
+    dfs(0, col, pacVisited)
+    dfs(m-1, col, atlVisited)
   }
-
-  return [...intersection(pacificVisited, atlanticVisited)].map(pair => pair.split('-').map(Number))
+  return [...intersection(atlVisited, pacVisited)].map(pair => pair.split('-').map(Number))
 }
+
