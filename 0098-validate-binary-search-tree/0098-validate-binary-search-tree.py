@@ -1,25 +1,22 @@
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {boolean}
- */
-var isValidBST = function(root) {
-    if (!root) return true
-    return validate(root, null, null)
-};
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def valid(node, left, right):
+            if not node:
+              return True
+            if not (node.val < right and node.val > left):
+              return False
 
-function validate(node, min, max) {
-    if (min !== null && node.val <= min) return false
-    if (max !== null && node.val >= max) return false
-    
-    if (node.left && !validate(node.left, min, node.val)) return false
-    if (node.right && !validate(node.right, node.val, max)) return false
-    return true
-}
+            return valid(node.left, left, node.val) and valid(node.right, node.val, right
+            )
+      
+        return valid(root, float("-inf"), float("inf"))
