@@ -12,15 +12,22 @@
  */
 const invertTree = (root) => {
   if (!root) return null
-  return dfs(root)
+  bfs([root])
+  return root
 }
 
-const dfs = (root) => {
-  const left = invertTree(root.left)
-  const right = invertTree(root.right)
+const bfs = (queue) => {
+  while (queue.length) {
+    for (let i = queue.length - 1; 0 <= i; i--) {
+      const node = queue.shift()
+      const left = node.right
+      const right = node.left
 
-  root.left = right
-  root.right = left
+      node.left = left
+      node.right = right
 
-  return root
+      if (node.left) queue.push(node.left)
+      if (node.right) queue.push(node.right)
+    }
+  }
 }
