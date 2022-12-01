@@ -10,7 +10,7 @@ function maxSubArray(nums) {
     
     for (let i = 0; i < n; i++) {
         sum = Math.max(nums[i], sum + nums[i])
-        maxSum = Math.max(sum, maxSum)
+        maxSum = Math.max(sum, maxSum)        
     }
     return maxSum
 }
